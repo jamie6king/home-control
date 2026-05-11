@@ -1,0 +1,27 @@
+doctype html
+
+html
+
+    head
+
+        include ../../components/head.pug
+
+        title Devices | Home Control
+
+    body
+
+        include ../../components/dashboard/sidebar.pug
+
+        main
+
+            h1 Devices
+
+            if !devices || devices.length < 1
+            
+                p No devices :(
+
+            else
+
+                each device in devices
+
+                    p= JSON.stringify(device)
