@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+
+        "lib": [ "esnext" ],
+        "target": "ESNext",
+        "module": "CommonJS",
+        "types": [ "node" ]
+    },
+
+    "ts-node": {
+        "esm": false,
+        "transpileOnly": true,
+
+        "require": [ "tsconfig-paths/register" ]
+    }
+}
