@@ -2,10 +2,14 @@
 // ~~~ server process
 //
 
-// setup app
+// imports
 import app from "./app.ts"
+import loadDotenv from "@lib/dotenv.ts"
 
-const PORT = 3000
+// setup app
+const dotenv = loadDotenv()
+
+const PORT = dotenv?.HC_PORT || 3000
 
 // start app
 app.listen(PORT, () => {
