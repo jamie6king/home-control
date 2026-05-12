@@ -6,6 +6,8 @@
 // action "on" actions
 export enum ACTION_ON_ACTION {
     PRESS = "press"
+    ON = "on"
+    OFF = "off"
     MOTION = "motion"
 }
 

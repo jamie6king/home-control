@@ -36,6 +36,22 @@ function _initActions() {
                         onPress(action)
                     }
 
+                    break
+
+                case "on":
+                    if (action.on.action === "press" || action.on.action === "on") {
+                        onPress(action)
+                    }
+
+                    break
+
+                case "off":
+                    if (action.on.action === "press" || action.on.action === "off") {
+                        onPress(action)
+                    }
+
+                    break
+
             }
         }
 
