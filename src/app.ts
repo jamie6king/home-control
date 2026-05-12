@@ -12,8 +12,10 @@ app.set("view engine", "pug")
 app.set("views", "./src/views")
 
 // setup routes
-import dashboardRouter from "@routes/dashboard"
+import apiRouter from "@routes/api.ts"
+import dashboardRouter from "@routes/dashboard.ts"
 
+app.use("/api", apiRouter)
 app.use("/", dashboardRouter)
 
 // export app
