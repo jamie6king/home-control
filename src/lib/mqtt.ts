@@ -47,7 +47,9 @@ export async function addListener(topic, callback) {
 
     // todo: error handling
 
-    client.on("message", (_, message) => {
+    client.on("message", (receivedTopic, message) => {
+        if (receivedTopic !== mqttTopic) return
+
         callback(message)
     })
 }
