@@ -1,0 +1,27 @@
+doctype html
+
+html
+
+    head
+
+        include ../../components/head.pug
+
+        title Actions | Home Control
+
+    body
+
+        include ../../components/dashboard/sidebar.pug
+
+        main
+
+            h1 Actions
+
+            if !actions || actions.length < 1
+
+                p No actions :(
+
+            else
+
+                each action in actions
+
+                    p= JSON.stringify(action)

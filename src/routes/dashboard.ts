@@ -5,6 +5,7 @@
 // imports
 import { Router } from "express"
 import allDevices from "@lib/config/devices.ts"
+import allActions from "@lib/config/actions.ts"
 
 // setup router
 const router = Router()
@@ -18,6 +19,13 @@ router.get("/", (_, res) => {
 router.get("/devices", (_, res) => {
     res.render("pages/dashboard/devices", {
         devices: allDevices
+    })
+})
+
+// all actions
+router.get("/actions", (_, res) => {
+    res.render("pages/dashboard/actions", {
+        actions: allActions
     })
 })
 
