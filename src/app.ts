@@ -11,6 +11,8 @@ const app = express()
 app.set("view engine", "pug")
 app.set("views", "./src/views")
 
+app.use("/public", express.static("./src/public"))
+
 // setup routes
 import apiRouter from "@routes/api.ts"
 import dashboardRouter from "@routes/dashboard.ts"
