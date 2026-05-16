@@ -19,8 +19,22 @@
     font-family: OpenSans;
 }
 
+:root {
+    color-scheme: light dark;
+
+    --color-background: light-dark(#ffffff, #18191b);
+    --color-surface: light-dark(#eeeff0, #252629);
+    --color-text: light-dark(#090909, #e0e1e4);
+    --color-accent: light-dark(#18191b, #e0e1e4);
+    --color-accent-text: light-dark(#e0e1e4, #18191b);
+
+    --trans: 0.15s ease;
+}
+
 body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }

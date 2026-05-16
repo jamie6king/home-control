@@ -6,6 +6,8 @@ html
 
         include ../../components/head.pug
 
+        link(href="/public/css/dashboard.css" rel="stylesheet")
+
         title Devices | Home Control
 
     body
@@ -22,6 +24,8 @@ html
 
             else
 
-                each device in devices
+                section.devices
 
-                    p= JSON.stringify(device)
+                    each device in devices
+
+                        include ../../components/dashboard/device.pug

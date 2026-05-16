@@ -1,0 +1,9 @@
+article.action
+
+    div
+        p= action.name
+
+    div
+
+        - let location = `/actions/${action.id}`
+        a(href=location) View

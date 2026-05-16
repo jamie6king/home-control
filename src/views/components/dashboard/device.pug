@@ -1,0 +1,12 @@
+article.device
+
+    div
+        p= device.name
+
+    div
+
+        if device.type == "light"
+            button Toggle
+
+        - let location = `/devices/${device.id}`
+        a(href=location) View

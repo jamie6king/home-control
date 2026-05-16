@@ -6,6 +6,8 @@ html
 
         include ../../components/head.pug
 
+        link(href="/public/css/dashboard.css" rel="stylesheet")
+
         title Actions | Home Control
 
     body
@@ -22,6 +24,9 @@ html
 
             else
 
-                each action in actions
+                section.actions
 
-                    p= JSON.stringify(action)
+                    each action in actions
+
+                        include ../../components/dashboard/action.pug
+
