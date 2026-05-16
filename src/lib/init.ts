@@ -3,13 +3,16 @@
 //
 
 // imports
-import { validate, onPress } from "@lib/helpers/action.ts"
+import { validate, onPress, onMotion } from "@lib/helpers/action.ts"
 import { addListener } from "@lib/mqtt.ts"
 import allActions, { ACTION_ON_ACTION } from "@lib/config/actions.ts"
 import allDevices from "@lib/config/devices.ts"
 
 // initialise actions
 function _initActions() {
+
+    global.activeActions = []
+    global.activeUndos = []
 
     if (!allActions || allActions.length < 1) return
 
@@ -24,7 +27,21 @@ function _initActions() {
             return
         }
 
-        const topic = `${onDevice.mqtt}/action`
+        // todo: use a single callback / listener & just subscribe to each topic
+        // first param on return is the topic so case / switch that
+
+        let topic
+
+        if (["on", "off", "toggle"].includes(action.on)) {
+
+            topic = `${onDevice.mqtt}/action`
+
+        } else {
+
+            topic = onDevice.mqtt
+
+        }
+
         const callback = (message) => {
 
             const messageAction = message.toString()
@@ -52,6 +69,20 @@ function _initActions() {
 
                     break
 
+                default:
+
+                    // probbaly a json string
+                    const jsonMessageAction = JSON.parse(messageAction)
+
+                    if (jsonMessageAction?.presence !== undefined && action.on.action === "motion") {
+
+                        onMotion(action, jsonMessageAction)
+
+                    } else {
+
+                        console.warn(`?> unknown action: ${messageAction} from ${topic}`)
+
+                    }
             }
         }
 

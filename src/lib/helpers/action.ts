@@ -7,14 +7,10 @@ import { sendMessage } from "@lib/mqtt.ts"
 import allActions from "@lib/config/actions.ts"
 import allDevices from "@lib/config/devices.ts"
 
-// run on button press
-export function onPress(action) {
+// run actions
+function _runActions(actions) {
 
-    console.debug(`-> running ${action.id}`)
-
-    const actionDo = action.do
-
-    actionDo.forEach((action) => {
+    actions.forEach((action) => {
 
         const device = allDevices.find((device) => device.id === action.device)
 
@@ -27,6 +23,66 @@ export function onPress(action) {
         sendMessage(topic, message)
 
     })
+}
+
+// run on button press
+export function onPress(action) {
+
+    console.debug(`-> running ${action.id}`)
+
+    _runActions(action.do)
+}
+
+// run on motion
+export function onMotion(action, payload) {
+
+    if (payload.presence === true) {
+
+        console.debug(`-> running ${action.id}`)
+
+        if (!global.activeActions.includes(action.id)) {
+            global.activeActions.push(action.id)
+        }
+
+        if (global.activeUndos.includes(action.id)) {
+            global.activeUndos = global.activeUndos.filter((trigger) => trigger !== action.id)
+        }
+
+        _runActions(action.do)
+
+    } else {
+
+        if (global.activeActions.includes(action.id)) {
+
+            console.debug(`-> undoing ${action.id}`)
+
+            const inverseActions = action.do.map((inverseAction) => {
+                let actionDo
+
+                switch (inverseAction.action) {
+                    case "on":
+                        actionDo = "off"
+                        break
+
+                    case "off":
+                        actionDo = "on"
+                        break
+
+                    default:
+                        actionDo = inverseAction.action
+                }
+
+                return {
+                    ...inverseAction,
+                    action: actionDo
+                }
+            })
+
+            global.activeActions = global.activeActions.filter((trigger) => trigger !== action.id)
+
+            _runActions(inverseActions)
+        }
+    }
 }
 
 // validate actions config
