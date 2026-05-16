@@ -12,11 +12,13 @@ html
 
     body
 
-        include ../../components/dashboard/sidebar.pug
-
         main
 
-            h1 Devices
+            section.heading
+
+                h1 Devices
+
+                input(type="checkbox")
 
             if !devices || devices.length < 1
             
@@ -29,3 +31,5 @@ html
                     each device in devices
 
                         include ../../components/dashboard/device.pug
+
+        include ../../components/dashboard/sidebar.pug

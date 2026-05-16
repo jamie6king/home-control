@@ -12,11 +12,13 @@ html
 
     body
 
-        include ../../components/dashboard/sidebar.pug
-
         main
 
-            h1 Actions
+            section.heading
+
+                h1 Actions
+
+                input(type="checkbox")
 
             if !actions || actions.length < 1
 
@@ -30,3 +32,4 @@ html
 
                         include ../../components/dashboard/action.pug
 
+        include ../../components/dashboard/sidebar.pug
