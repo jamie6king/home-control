@@ -1,0 +1,15 @@
+{
+    "name": "homecontrol",
+    "homepage": "https://github.com/jamie6king/home-control",
+    "description": "A automation service for Zigbee2MQTT",
+    "bugs": {
+        "email": "bugs+homecontrol@jamiedanielk.ing",
+	"url": "https://github.com/jamie6king/home-control/issues"
+    },
+    "author": {
+        "name": "Jamie King",
+        "email": "git@jamiedanielk.ing",
+        "url": "https://jamiedanielk.ing"
+    },
+    "scripts": {}
+}
