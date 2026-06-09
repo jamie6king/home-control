@@ -1,16 +1,22 @@
-// @ts-check
+import { defineConfig } from "eslint/config"
 
-import js from "@eslint/js";
-import { defineConfig } from "eslint/config";
-import tseslint from "typescript-eslint";
+import js from "@eslint/js"
+import ts from "typescript-eslint"
+import stylistic from "@stylistic/eslint-plugin"
 
 export default defineConfig([
     {
-        "files": ["**/*.{js,ts}"],
+        "files": ["src/**/*"],
         "extends": [
             js.configs.recommended,
-            tseslint.configs.strictTypeCheckedOnly
+            ts.configs.strictTypeCheckedOnly
         ],
+        "plugins": {
+            "@stylistic": stylistic
+        },
+        "rules": {
+            "@stylistic/semi": ["error", "never"]
+        },
         "languageOptions": {
             "parserOptions": {
                 "projectService": true

@@ -1,17 +1,19 @@
 {
+    "include": ["src/**/*", "eslint.config.mjs"],
+
     "compilerOptions": {
         "rootDir": "./src",
 
-        "lib": [ "ESNext" ],
+        "lib": ["ESNext"],
         "target": "ESNext",
         "module": "CommonJS",
-        "types": [ "node" ],
+        "types": ["node"],
     },
 
     "ts-node": {
         "esm": false,
         "transpileOnly": true,
 
-        "require": [ "tsconfig-paths/register" ],
+        "require": ["tsconfig-paths/register"],
     },
 }
