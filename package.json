@@ -28,6 +28,7 @@
         "typescript-eslint": "8.60.1"
     },
     "dependencies": {
-        "express": "5.2.1"
+        "express": "5.2.1",
+        "mqtt": "5.15.1"
     }
 }

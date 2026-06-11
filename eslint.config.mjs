@@ -15,6 +15,7 @@ export default defineConfig([
             "@stylistic": stylistic
         },
         "rules": {
+            "@typescript-eslint/consistent-type-imports": ["error", { "fixStyle": "inline-type-imports"}],
             "@stylistic/array-bracket-spacing": ["error", "always"],
             "@stylistic/semi": ["error", "never"]
         },
