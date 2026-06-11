@@ -15,6 +15,7 @@ export default defineConfig([
             "@stylistic": stylistic
         },
         "rules": {
+            "@stylistic/array-bracket-spacing": ["error", "always"],
             "@stylistic/semi": ["error", "never"]
         },
         "languageOptions": {

@@ -8,6 +8,10 @@
         "target": "ESNext",
         "module": "CommonJS",
         "types": ["node"],
+
+        "paths": {
+            "@lib:*": ["./src/lib/*"],
+        },
     },
 
     "ts-node": {
