@@ -1,0 +1,25 @@
+name: Test & lint
+on: push
+
+jobs:
+    test:
+        name: Test & lint code
+        runs-on: ubuntu-slim
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: Setup NodeJS
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "24.x"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci --include=dev
+
+            - name: Check linting
+              run: npm run lint
+
+            - name: Run tests
+              run: npm run test
