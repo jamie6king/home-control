@@ -11,6 +11,7 @@
 
         "paths": {
             "@lib:*": ["./src/lib/*"],
+            "@config:*": ["./src/lib/config/*"],
         },
     },
 
