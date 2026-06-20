@@ -14,7 +14,8 @@
     "scripts": {
         "start": "nodemon --watch 'src/**/*' --exec 'ts-node' src/server.ts",
         "lint": "eslint .",
-        "test": "jest"
+        "test": "jest --silent",
+        "test:verbose": "jest"
     },
     "devDependencies": {
         "@eslint/js": "10.0.1",

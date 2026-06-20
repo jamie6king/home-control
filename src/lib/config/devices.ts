@@ -13,7 +13,7 @@ let devicesConfig: DevicesConfig = {}
 try {
     devicesConfig = JSON.parse(readFileSync(configFile, "utf8")) as DevicesConfig
 } catch {
-    console.error("!> cannot read device config file")
+    console.warn("!> cannot read device config file")
 }
 
 // get all devices
