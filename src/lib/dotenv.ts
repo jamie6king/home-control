@@ -4,6 +4,7 @@
 
 // imports
 import { readFileSync } from "node:fs"
+import logger from "@lib:logger"
 
 // load env file
 export default function load(): { [env: string]: string} {
@@ -20,7 +21,7 @@ export default function load(): { [env: string]: string} {
         fileEntries = Object.fromEntries(fileMap)
 
     } catch {
-        console.error("!> cannot read .env file")
+        logger.error("!> cannot read .env file")
     }
 
     return fileEntries
