@@ -2,6 +2,9 @@
 // ~~~ action config tests
 //
 
+// imports
+import { jest } from "@jest/globals"
+
 // setup mocks
 const mockReadFileSync = jest.fn()
 
