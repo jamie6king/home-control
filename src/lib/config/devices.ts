@@ -17,15 +17,10 @@ try {
 }
 
 // get all devices
-const allDevices = Object.keys(devicesConfig).map((device) => {
-    const deviceInfo = devicesConfig[device] // TODO: probably a better way to get this info
-
-    if (!deviceInfo.mqtt) deviceInfo.mqtt = deviceInfo.name
-
-    return {
-        ...deviceInfo,
-        id: device
-    }
-})
+const allDevices = Object.entries(devicesConfig).map(([ id, device ]) => ({
+    ...device,
+    id,
+    mqtt: device.mqtt ? device.mqtt : device.name
+}))
 
 export default allDevices

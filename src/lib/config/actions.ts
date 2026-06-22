@@ -17,13 +17,6 @@ try {
 }
 
 // get all actions
-const allActions = Object.keys(actionsConfig).map((action) => {
-    const actionInfo = actionsConfig[action] // TODO: probably a better way to get this info
-
-    return {
-        ...actionInfo,
-        id: action
-    }
-})
+const allActions = Object.entries(actionsConfig).map(([ id, action ]) => ({  ...action, id }))
 
 export default allActions
