@@ -4,8 +4,12 @@
 
 // imports
 import app from "./app"
+import setupActions from "@lib:actions"
 import load from "@lib:dotenv"
 import logger from "@lib:logger"
+
+// setup actions
+setupActions()
 
 // setup app
 const dotenv = load()
