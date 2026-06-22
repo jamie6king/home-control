@@ -14,8 +14,10 @@ const PORT = Number(dotenv.HC_PORT) || 3000
 
 // setup routes
 import statusRoute from "./routes/status"
+import apiRoute from "./routes/api"
 
 app.use("/status", statusRoute)
+app.use("/api", apiRoute)
 
 // start app
 app.listen(PORT, () => {

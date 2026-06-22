@@ -12,7 +12,7 @@ export enum DEVICE_TYPE {
 // individual device config
 export interface DeviceConfig {
     name: string;
-    mqtt?: string;
+    mqtt: string;
     type: DEVICE_TYPE;
 }
 
