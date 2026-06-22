@@ -29,28 +29,53 @@ export default function setupActions() {
         const device = allDevices.find((device) => `zigbee2mqtt/${device.mqtt}` === topic)
         if (!device) return
 
-        const action = allActions.find((action) => action.on.device === device.id)
-        if (!action) return
+        const action = allActions.filter((action) => action.on.device === device.id)
 
-        logger.debug(`D> running ${action.id} triggered by ${device.id}`)
+        action.forEach((action) => {
 
-        // TODO: add support for string outputs
-        // TODO: tighten up the types
-        type messageType = { [ key: string ]: string }
-        const message = JSON.parse(payload.toString()) as messageType
+            // TODO: no it's not
+            logger.debug(`D> running ${action.id} triggered by ${device.id}`)
 
-        // TODO: hard-coding for testing
-        if (message.action === "single" && action.on.action === ACTION_ON_ACTION.PRESS) {
-            action.do.forEach((device) => {
-                const configDevice = allDevices.find((configDevice) => configDevice.id === device.device)
-                if (!configDevice) return
+            // TODO: add support for string outputs
+            // TODO: tighten up the types
+            type messageType = { [ key: string ]: string }
+            const message = JSON.parse(payload.toString()) as messageType
 
-                logger.debug(`  D> sending ${device.action} to ${configDevice.id}`)
+            // TODO: hard-coding for testing
+            if (message.action === "single" && action.on.action === ACTION_ON_ACTION.PRESS) {
+                action.do.forEach((device) => {
+                    const configDevice = allDevices.find((configDevice) => configDevice.id === device.device)
+                    if (!configDevice) return
 
-                if (device.action === ACTION_DO_ACTION.TOGGLE) {
-                    sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": "toggle" })
-                }
-            })
-        }
+                    logger.debug(`  D> sending ${device.action} to ${configDevice.id}`)
+
+                    if (device.action === ACTION_DO_ACTION.TOGGLE) {
+                        sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": "toggle" })
+                    }
+                })
+            } else if (message.action === "on" && action.on.action === ACTION_ON_ACTION.ON) {
+                action.do.forEach((device) => {
+                    const configDevice = allDevices.find((configDevice) => configDevice.id === device.device)
+                    if (!configDevice) return
+
+                    logger.debug(`  D> sending ${device.action} to ${configDevice.id}`)
+
+                    if (device.action === ACTION_DO_ACTION.ON) {
+                        sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": "ON" })
+                    }
+                })
+            } else if (message.action === "off" && action.on.action === ACTION_ON_ACTION.OFF) {
+                action.do.forEach((device) => {
+                    const configDevice = allDevices.find((configDevice) => configDevice.id === device.device)
+                    if (!configDevice) return
+
+                    logger.debug(`  D> sending ${device.action} to ${configDevice.id}`)
+
+                    if (device.action === ACTION_DO_ACTION.OFF) {
+                        sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": "OFF" })
+                    }
+                })
+            }
+        })
     })
 }
