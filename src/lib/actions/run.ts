@@ -31,4 +31,28 @@ export default function runAction(action: ActionConfig, payload: Buffer) {
             sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
         })
     }
+
+    // TODO: make more robust
+    if (action.timeout && action.timeoutDo && action.timeoutDo.length > 0) {
+
+        // TODO: use id
+        if (Object.keys(global.actions).includes(action.name)) {
+            global.actions[action.name].refresh()
+        } else {
+            global.actions[action.name] = setTimeout(() => {
+
+                if (!action.timeoutDo) return
+
+                // TODO: use above logic
+                action.timeoutDo.forEach((action) => {
+                    const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
+                    if (!configDevice) return
+
+                    logger.debug(`  D> sending ${action.action} to ${action.device}`)
+                    sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
+                })
+
+            }, action.timeout)
+        }
+    }
 }

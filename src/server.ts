@@ -10,6 +10,7 @@ import logger from "@lib:logger"
 
 // setup actions
 setupActions()
+global.actions = {}
 
 // setup app
 const dotenv = load()
