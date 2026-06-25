@@ -19,7 +19,10 @@ export default function runAction(action: ActionConfig, payload: Buffer) {
     // TODO: expand conversions
     if (message.action === "single") message.action = ACTION_ON_ACTION.PRESS.toString()
 
-    if (message.action === action.on.action.toString()) {
+    if (
+        message.action === action.on.action.toString() ||
+        (Boolean(message.presence) && action.on.action === ACTION_ON_ACTION.MOTION)
+    ) {
         logger.debug(`D> ${action.on.device} triggered the "${action.name}" action`)
 
         // TODO: make more dynamic
@@ -30,29 +33,30 @@ export default function runAction(action: ActionConfig, payload: Buffer) {
             logger.debug(`  D> sending ${action.action} to ${action.device}`)
             sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
         })
-    }
 
-    // TODO: make more robust
-    if (action.timeout && action.timeoutDo && action.timeoutDo.length > 0) {
+        // TODO: make more robust
+        if (action.timeout && action.timeoutDo && action.timeoutDo.length > 0) {
 
-        // TODO: use id
-        if (Object.keys(global.actions).includes(action.name)) {
-            global.actions[action.name].refresh()
-        } else {
-            global.actions[action.name] = setTimeout(() => {
+            // TODO: use id
+            if (Object.keys(global.actions).includes(action.name)) {
+                global.actions[action.name].refresh()
+            } else {
+                global.actions[action.name] = setTimeout(() => {
 
-                if (!action.timeoutDo) return
+                    if (!action.timeoutDo) return
 
-                // TODO: use above logic
-                action.timeoutDo.forEach((action) => {
-                    const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
-                    if (!configDevice) return
+                    // TODO: use above logic
+                    action.timeoutDo.forEach((action) => {
+                        const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
+                        if (!configDevice) return
 
-                    logger.debug(`  D> sending ${action.action} to ${action.device}`)
-                    sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
-                })
+                        logger.debug(`  D> sending ${action.action} to ${action.device}`)
+                        sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
+                    })
 
-            }, action.timeout)
+                }, action.timeout)
+            }
         }
     }
+
 }
