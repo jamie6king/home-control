@@ -14,7 +14,7 @@ export default function setupListener(
     listeners: string[],
     callback: OnMessageCallback
 ) {
-    listeners.forEach((listener) =>mqtt.subscribe(listener))
+    listeners.forEach((listener) => mqtt.subscribe(listener))
 
     mqtt.on("message", callback)
 }

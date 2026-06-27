@@ -4,9 +4,19 @@
 
 // imports
 import sendMessage from "@lib:mqtt/message"
-import { ACTION_ON_ACTION, type ActionConfig } from "@lib:config/actions.types"
+import { ACTION_ON_ACTION, type ActionDoType, type ActionConfig } from "@lib:config/actions.types"
 import allDevices from "@lib:config/devices"
 import logger from "@lib:logger"
+
+// TODO: make more dynamic
+// run single action
+function _run(action: ActionDoType) {
+    const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
+    if (!configDevice) return
+
+    logger.debug(`  D> sending ${action.action} to ${action.device}`)
+    sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
+}
 
 // run action
 export default function runAction(action: ActionConfig, payload: Buffer) {
@@ -25,14 +35,7 @@ export default function runAction(action: ActionConfig, payload: Buffer) {
     ) {
         logger.debug(`D> ${action.on.device} triggered the "${action.name}" action`)
 
-        // TODO: make more dynamic
-        action.do.forEach((action) => {
-            const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
-            if (!configDevice) return
-
-            logger.debug(`  D> sending ${action.action} to ${action.device}`)
-            sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
-        })
+        action.do.forEach(_run)
 
         // TODO: make more robust
         if (action.timeout && action.timeoutDo && action.timeoutDo.length > 0) {
@@ -44,15 +47,7 @@ export default function runAction(action: ActionConfig, payload: Buffer) {
                 global.actions[action.name] = setTimeout(() => {
 
                     if (!action.timeoutDo) return
-
-                    // TODO: use above logic
-                    action.timeoutDo.forEach((action) => {
-                        const configDevice = allDevices.find((configDevice) => configDevice.id === action.device)
-                        if (!configDevice) return
-
-                        logger.debug(`  D> sending ${action.action} to ${action.device}`)
-                        sendMessage(`zigbee2mqtt/${configDevice.mqtt}/set`, { "state": action.action.toString()})
-                    })
+                    action.timeoutDo.forEach(_run)
 
                 }, action.timeout)
             }
