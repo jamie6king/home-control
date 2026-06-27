@@ -7,7 +7,7 @@
         "lib": ["ESNext"],
         "target": "ESNext",
         "module": "CommonJS",
-        "types": ["node", "jest"],
+        "types": ["node"],
 
         "paths": {
             "@lib:*": ["./src/lib/*"],

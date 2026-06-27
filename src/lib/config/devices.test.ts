@@ -1,31 +1,30 @@
 //
-// ~~~ device config tests
+// ~~~ action config tests
 //
 
 // imports
-import { jest } from "@jest/globals"
+import { vi, describe, beforeEach, it, expect } from "vitest"
 
 // setup mocks
-const mockReadFileSync = jest.fn()
+const mockReadFileSync = vi.fn()
 
-jest.mock("node:fs", () => ({
-    __esModule: true,
-    readFileSync: () => mockReadFileSync()
-}))
+ vi.doMock("node:fs", () => ({
+     readFileSync: mockReadFileSync
+ }))
 
 // test function
 describe("device configs", () => {
 
     // setup mock
     beforeEach(() => {
-        mockReadFileSync.mockReset()()
-        jest.resetModules()
+        vi.resetModules()
+        vi.resetAllMocks()
     })
 
     // no config file
     describe("has no config file", () => {
-        it("returns an empty array", () => {
-            const devices = require("./devices").default
+        it("returns an empty array", async () => {
+            const devices = (await import("./devices")).default
 
             expect(devices).toStrictEqual([])
         })
@@ -35,7 +34,7 @@ describe("device configs", () => {
     describe("has a config file", () => {
 
         // no mqtt config
-        it("returns an array of objects", () => {
+        it("returns an array of objects", async () => {
             mockReadFileSync.mockReturnValue(JSON.stringify({
                 "test": {
                     "name": "test device",
@@ -43,7 +42,7 @@ describe("device configs", () => {
                 }
             }))
 
-            const devices = require("./devices").default
+            const devices = (await import("./devices")).default
 
             expect(devices).toHaveLength(1)
             expect(devices).toStrictEqual([
@@ -56,8 +55,8 @@ describe("device configs", () => {
             ])
         })
 
-        // no mqtt config
-        it("returns an array of objects with given mqtt name", () => {
+        // mqtt config
+        it("returns an array of objects with given mqtt name", async () => {
             mockReadFileSync.mockReturnValue(JSON.stringify({
                 "test": {
                     "name": "test device",
@@ -66,7 +65,7 @@ describe("device configs", () => {
                 }
             }))
 
-            const devices = require("./devices").default
+            const devices = (await import("./devices")).default
 
             expect(devices).toHaveLength(1)
             expect(devices).toStrictEqual([

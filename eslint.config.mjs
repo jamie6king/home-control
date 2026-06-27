@@ -3,7 +3,6 @@ import { defineConfig } from "eslint/config"
 import js from "@eslint/js"
 import ts from "typescript-eslint"
 import stylistic from "@stylistic/eslint-plugin"
-import jest from "eslint-plugin-jest"
 
 export default defineConfig([
     {
@@ -45,21 +44,5 @@ export default defineConfig([
                 "projectService": true
             }
         }
-    },
-    {
-        "files": ["src/**/*.test.*"],
-        "plugins": {
-            jest: jest
-        },
-        "rules": {
-            "@typescript-eslint/no-require-imports": ["off"],
-            "@typescript-eslint/no-unsafe-call": ["off"],
-            "@typescript-eslint/no-unsafe-member-access": ["off"],
-            "@typescript-eslint/no-unsafe-assignment": ["off"],
-            "@typescript-eslint/no-unsafe-return": ["off"]
-        },
-        "languageOptions": {
-            "globals": jest.environments.globals.globals
-        },
     }
 ])

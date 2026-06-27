@@ -3,29 +3,28 @@
 //
 
 // imports
-import { jest } from "@jest/globals"
+import { vi, describe, beforeEach, it, expect } from "vitest"
 
 // setup mocks
-const mockReadFileSync = jest.fn()
+const mockReadFileSync = vi.fn()
 
-jest.mock("node:fs", () => ({
-    __esModule: true,
-    readFileSync: () => mockReadFileSync()
-}))
+ vi.doMock("node:fs", () => ({
+     readFileSync: mockReadFileSync
+ }))
 
 // test function
 describe("action configs", () => {
 
     // setup mock
     beforeEach(() => {
-        mockReadFileSync.mockReset()()
-        jest.resetModules()
+        vi.resetModules()
+        vi.resetAllMocks()
     })
 
     // no config file
     describe("has no config file", () => {
-        it("returns an empty array", () => {
-            const actions = require("./actions").default
+        it("returns an empty array", async () => {
+            const actions = (await import("./actions")).default
 
             expect(actions).toStrictEqual([])
         })
@@ -33,7 +32,7 @@ describe("action configs", () => {
 
     // config file
     describe("has a config file", () => {
-        it("returns an array of objects", () => {
+        it("returns an array of objects", async () => {
             mockReadFileSync.mockReturnValue(JSON.stringify({
                 "test": {
                     "name": "test action",
@@ -48,7 +47,7 @@ describe("action configs", () => {
                 }
             }))
 
-            const actions = require("./actions").default
+            const actions = (await import("./actions")).default
 
             expect(actions).toHaveLength(1)
             expect(actions).toStrictEqual([
