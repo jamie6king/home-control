@@ -1,9 +1,32 @@
-name: Test & lint
+name: Check code
 on: push
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
     test:
-        name: Test & lint code
+        name: Run tests
+        runs-on: ubuntu-slim
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: Setup NodeJS
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "24"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci --include=dev
+
+            - name: Run tests
+              run: npm run test
+
+    lint:
+        name: Check linting
         runs-on: ubuntu-slim
         steps:
             - name: Checkout code
@@ -18,8 +41,5 @@ jobs:
             - name: Install dependencies
               run: npm ci --include=dev
 
-            - name: Check linting
-              run: npm run lint
-
             - name: Run tests
-              run: npm run test
+              run: npm run lint
