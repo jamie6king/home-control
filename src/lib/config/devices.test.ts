@@ -13,8 +13,7 @@ const mockReadFileSync = vi.fn()
  }))
 
 // test function
-// TODO: fix the tsconfig aliasing for vitest
-describe.skip("device configs", () => {
+describe("device configs", () => {
 
     // setup mock
     beforeEach(() => {
