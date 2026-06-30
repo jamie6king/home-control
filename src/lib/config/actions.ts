@@ -4,10 +4,11 @@
 
 // imports
 import { readFileSync } from "node:fs"
+import applicationConfig from "@config:application"
 import type ActionsConfig from "./actions.types"
 
 // load config
-const configFile = "data/actions.json" // TODO: don't hard-code
+const configFile = applicationConfig.data.actionsFile
 let actionsConfig: ActionsConfig = {}
 
 try {

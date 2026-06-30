@@ -4,10 +4,11 @@
 
 // imports
 import { readFileSync } from "node:fs"
+import applicationConfig from "@config:application"
 import type DevicesConfig from "./devices.types"
 
 // load config
-const configFile = "data/devices.json" // TODO: don't hard-code
+const configFile = applicationConfig.data.devicesFile
 let devicesConfig: DevicesConfig = {}
 
 try {

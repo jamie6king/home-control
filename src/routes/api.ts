@@ -6,11 +6,15 @@
 import { Router } from "express"
 import sendMessage from "@lib:mqtt/message"
 import allDevices from "@lib:config/devices"
-import { DEVICE_TYPE } from "@lib:config/devices.types"
+import { DEVICE_TYPE } from "@config:devices.types"
+import applicationConfig from "@config:application"
 import logger from "@lib:logger"
 
 // setup router
 const router = Router()
+
+// setup mqtt
+const TOPIC = applicationConfig.mqtt.topic
 
 // toggle device
 router.get("/device/:id/toggle", (req, res) => {
@@ -22,7 +26,7 @@ router.get("/device/:id/toggle", (req, res) => {
 
     logger.debug(`D> toggling ${device}`)
 
-    sendMessage(`zigbee2mqtt/${config.mqtt}/set`, { "state": "toggle" }) // TODO: add ability to add topic prefix
+    sendMessage(`${TOPIC}/${config.mqtt}/set`, { "state": "toggle" })
     res.status(200).send()
 })
 

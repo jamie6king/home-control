@@ -8,8 +8,12 @@ import validateActions from "@lib:actions/validate"
 import runAction from "@lib:actions/run"
 import allActions from "@lib:config/actions"
 import type ActionsConfig from "@lib:config/actions.types"
-import allDevices from "@lib:config/devices"
+import allDevices from "@config:devices"
+import applicationConfig from "@config:application"
 import logger from "@lib:logger"
+
+// setup mqtt
+const TOPIC = applicationConfig.mqtt.topic
 
 // setup actions
 export default function setupActions() {
@@ -28,14 +32,14 @@ export default function setupActions() {
     const actionTopics = allActions.map((action) => {
         const device = allDevices.find((device) => device.id === action.on.device)
 
-        return device?.mqtt ? `zigbee2mqtt/${device.mqtt}` : ""
+        return device?.mqtt ? `${TOPIC}/${device.mqtt}` : ""
     }).filter((a) => a !== "")
 
     logger.debug(`  D> listening for ${actionTopics.length.toString()} topics`)
 
     // TODO: make the below more efficient
     setupListener(actionTopics, (topic, payload) => {
-        const device = allDevices.find((device) => `zigbee2mqtt/${device.mqtt}` === topic)
+        const device = allDevices.find((device) => `${TOPIC}/${device.mqtt}` === topic)
         if (!device) return
 
         const action = allActions.filter((action) => action.on.device === device.id)

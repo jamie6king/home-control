@@ -4,12 +4,12 @@
 
 // imports
 import mqtt, { type MqttClient } from "mqtt"
-import load from "@lib:dotenv"
+import applicationConfig from "@config:application"
 
 // setup mqtt
-const dotenv = load()
-
-const HOST = dotenv.MQTT_HOST
+const ADDR = applicationConfig.mqtt.address
+const PORT = applicationConfig.mqtt.port
+const HOST = `mqtt://${ADDR}:${PORT.toString()}`
 
 // client connector
 export default function client() {
