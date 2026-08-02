@@ -5,5 +5,7 @@
     --color-background: #fffcf0;
     --color-surface: #e6e4d9;
     --color-foreground: #100f0f;
+    --color-contrast: #cecdc3;
     --color-accent: #da702c;
+    --color-alert: #af3029;
 }

@@ -58,3 +58,15 @@ div#main {
         background-color: var(--color-background);
     }
 }
+
+div.banner {
+    margin: 8px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+
+    &.alert {
+        background-color: var(--color-alert);
+        color: var(--color-contrast);
+    }
+}
