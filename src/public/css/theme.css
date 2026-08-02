@@ -1,0 +1,9 @@
+:root {
+    --width-sidebar: 256px;
+    --height-header: 64px;
+
+    --color-background: #fffcf0;
+    --color-surface: #e6e4d9;
+    --color-foreground: #100f0f;
+    --color-accent: #da702c;
+}
