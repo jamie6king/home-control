@@ -11,7 +11,7 @@ export interface Logger {
 }
 
 // debug logging
-const debug = (text: string) => { console.debug("%c" + text, "color:grey;") }
+const debug = (text: string) => { console.debug("%c%s", "color:grey;", text) }
 
 // info logging
 const info = (text: string) => { console.log(text) }
