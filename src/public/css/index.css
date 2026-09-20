@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 body {
@@ -8,14 +9,14 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: var(--width-sidebar) auto;
-    background-color: var(--color-background);
+    background-color: var(--color-surface);
 }
 
 sidebar {
     margin-bottom: 16px;
     grid-column: 1;
     border-bottom-right-radius: 16px;
-    background-color: var(--color-surface);
+    background-color: var(--color-background);
 
     ul {
         padding: 8px;
@@ -33,6 +34,7 @@ sidebar {
 
                 &:hover {
                     background-color: var(--color-accent);
+                    color: var(--color-accent-contrast);
                     text-decoration: underline;
                 }
             }
@@ -44,7 +46,7 @@ div#main {
     grid-column: 2;
     display: grid;
     grid-template-rows: var(--height-header) auto;
-    background-color: var(--color-surface);
+    background-color: var(--color-background);
 
     header {
         padding: 0 16px;
@@ -55,7 +57,7 @@ div#main {
 
     main {
         border-top-left-radius: 16px;
-        background-color: var(--color-background);
+        background-color: var(--color-surface);
     }
 }
 
@@ -67,6 +69,6 @@ div.banner {
 
     &.alert {
         background-color: var(--color-alert);
-        color: var(--color-contrast);
+        color: var(--color-alert-contrast);
     }
 }

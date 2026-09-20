@@ -2,10 +2,22 @@
     --width-sidebar: 256px;
     --height-header: 64px;
 
-    --color-background: #fffcf0;
-    --color-surface: #e6e4d9;
-    --color-foreground: #100f0f;
-    --color-contrast: #cecdc3;
-    --color-accent: #da702c;
-    --color-alert: #af3029;
+    --color-black: #100f0f;
+    --color-black-dim: #1c1b1a;
+    --color-white: #fff;
+    --color-white-dim: #f0f0f0;
+    --color-red: light-dark(#af3029, #d14d41);
+    --color-red-contrast: var(--color-white);
+    --color-orange: light-dark(#bc5215, #da702c);
+    --color-orange-contrast: var(--color-white);
+
+    --color-background: light-dark(var(--color-white), var(--color-black));
+    --color-surface: light-dark(var(--color-white-dim), var(--color-black-dim));
+    --color-foreground: light-dark(var(--color-black), var(--color-white));
+    --color-contrast: light-dark(var(--color-white), var(--color-black));
+
+    --color-accent: var(--color-orange);
+    --color-accent-contrast: var(--color-orange-contrast);
+    --color-alert: var(--color-red);
+    --color-alert-contrast: var(--color-red-contrast);
 }
