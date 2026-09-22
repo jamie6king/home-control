@@ -17,10 +17,12 @@ const ADDR = applicationConfig.server.address
 const PORT = applicationConfig.server.port
 
 // setup routes
+import rootRoute from "./routes/root"
 import statusRoute from "./routes/status"
 import apiRoute from "./routes/api"
 import dashboardRoute from "./routes/dashboard"
 
+app.use("/", rootRoute)
 app.use("/status", statusRoute)
 app.use("/api", apiRoute)
 app.use("/dashboard", dashboardRoute)
