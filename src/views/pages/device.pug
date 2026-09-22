@@ -1,0 +1,14 @@
+extends ../templates/index.pug
+
+block title
+    title= `${device.name || device.id} | Home Control`
+
+block content
+
+    include ../components/sidebar
+
+    div#main
+        header
+            h1= device.name || device.id
+
+        main

@@ -13,6 +13,14 @@ block content
 
         main
 
+            if error
+                div.banner.alert
+                    p= error
+
             if devices.length == 0
                 div.banner.alert
                     p No devices configured.
+            else
+                ul.device-list
+                    for device in devices
+                        include ../components/device

@@ -19,7 +19,8 @@ export default defineConfig([
             "@stylistic/arrow-spacing": ["error", {
                 "before": true,
                 "after": true
-            }],
+          }],
+            "@stylistic/indent": ["error", 4],
             "@stylistic/member-delimiter-style": ["error", {
                 "multiline": {
                     "delimiter": "semi",

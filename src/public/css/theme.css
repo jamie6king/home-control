@@ -4,8 +4,10 @@
 
     --color-black: #100f0f;
     --color-black-dim: #1c1b1a;
+    --color-black-surface: #343332;
     --color-white: #fff;
     --color-white-dim: #f0f0f0;
+    --color-white-surface: #e3e4e5;
     --color-red: light-dark(#af3029, #d14d41);
     --color-red-contrast: var(--color-white);
     --color-orange: light-dark(#bc5215, #da702c);
@@ -13,6 +15,7 @@
 
     --color-background: light-dark(var(--color-white), var(--color-black));
     --color-surface: light-dark(var(--color-white-dim), var(--color-black-dim));
+    --color-surface-2: light-dark(var(--color-white-surface), var(--color-black-surface));
     --color-foreground: light-dark(var(--color-black), var(--color-white));
     --color-contrast: light-dark(var(--color-white), var(--color-black));
 
