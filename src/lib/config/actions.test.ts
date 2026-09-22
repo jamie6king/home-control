@@ -8,9 +8,9 @@ import { vi, describe, beforeEach, it, expect } from "vitest"
 // setup mocks
 const mockReadFileSync = vi.fn()
 
- vi.doMock("node:fs", () => ({
-     readFileSync: mockReadFileSync
- }))
+vi.doMock("node:fs", () => ({
+    readFileSync: mockReadFileSync
+}))
 
 // test function
 describe("action configs", () => {
