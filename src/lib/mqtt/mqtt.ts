@@ -20,6 +20,8 @@ export default function client() {
     } else {
         client = mqtt.connect(HOST) // TODO: allow auth / other MQTT options
         global.mqtt = client
+
+        client.on("error", (error) => { throw new Error(error.name) })
     }
 
     return client
