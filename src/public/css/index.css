@@ -87,6 +87,8 @@ ul.device-list {
     gap: 16px;
 
     li.device {
+        display: flex;
+        justify-content: space-between;
         list-style-type: none;
         background-color: var(--color-surface-2);
         border-radius: 8px;
@@ -102,10 +104,24 @@ ul.device-list {
         }
 
         a {
+            width: 100%;
             padding: 16px;
             display: inline-block;
             color: var(--color-foreground);
             text-decoration: none;
+        }
+
+        button {
+            margin: 8px;
+            padding: 0 16px;
+            background-color: var(--color-background);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--color-surface);
+            }
         }
     }
 }

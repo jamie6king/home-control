@@ -3,3 +3,6 @@ li.device
 
     a(href=deviceUrl)
         h3= device.name
+
+    if device.type === "light"
+        button(onclick=`toggleDevice(event, "${device.id}")`) Toggle
