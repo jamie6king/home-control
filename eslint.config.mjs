@@ -7,6 +7,7 @@ import stylistic from "@stylistic/eslint-plugin"
 export default defineConfig([
     {
         "files": ["src/**/*"],
+        "ignores": ["src/public/**/*"],
         "extends": [
             js.configs.recommended,
             ts.configs.strictTypeChecked
