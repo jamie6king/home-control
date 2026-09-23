@@ -8,6 +8,8 @@ import allDevices from "@lib:config/devices"
 
 // validate actions
 export default function validateActions(actions: ActionsConfig): boolean {
+
+    if (typeof actions !== "object") return false
     if (Object.keys(actions).length < 0) return true
 
     // TODO: expand the validation checks
