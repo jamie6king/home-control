@@ -1,18 +1,12 @@
 extends ../templates/index.pug
 
-block title
-    title Actions | Home Control
-
 block content
-
     include ../components/sidebar
 
     div#main
-        header
-            h1 Actions
+        include ../components/header
 
         main
-
             if actions.length == 0
                 div.banner.alert
                     p No actions configured.

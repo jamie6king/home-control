@@ -8,14 +8,24 @@ body {
     width: 100vw;
     height: 100vh;
     display: grid;
+    grid-template-areas: "sidebar main";
     grid-template-columns: var(--width-sidebar) auto;
     overflow: hidden;
     background-color: var(--color-surface);
+
+    @media only screen and (max-width: 600px) {
+        grid-template-areas: "main";
+        grid-template-columns: auto;
+
+        &:has(input.sidebar:checked) sidebar {
+            display: initial;
+        }
+    }
 }
 
 sidebar {
     margin-bottom: 16px;
-    grid-column: 1;
+    grid-area: sidebar;
     border-bottom-right-radius: 16px;
     background-color: var(--color-background);
 
@@ -41,10 +51,23 @@ sidebar {
             }
         }
     }
+
+    @media only screen and (max-width: 600px) {
+        min-width: 80vw;
+        height: 100%;
+        padding-top: 48px;
+        position: absolute;
+        display: none;
+        grid-area: unset;
+
+        ul li a {
+            padding: 16px 12px;
+        }
+    }
 }
 
 div#main {
-    grid-column: 2;
+    grid-area: main;
     display: grid;
     grid-template-rows: var(--height-header) auto;
     overflow: hidden;
@@ -55,6 +78,20 @@ div#main {
         display: flex;
         flex-direction: row;
         align-items: center;
+        gap: 16px;
+
+        input.sidebar {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            input.sidebar {
+                width: 24px;
+                height: 24px;
+                z-index: 100;
+                display: initial;
+            }
+        }
     }
 
     main {
@@ -64,6 +101,10 @@ div#main {
 
         &:has(div.banner) ul.device-list {
             padding-top: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            border-top-right-radius: 16px;
         }
     }
 }

@@ -17,7 +17,9 @@ const router = Router()
 router.get("/", (_, res) => {
     logger.debug("D> loading dashboard home")
 
-    res.render("index")
+    res.render("index", {
+        page: { title: "Home Control" }
+    })
 })
 
 // devices route
@@ -31,6 +33,7 @@ router.get("/devices", (req, res) => {
     }
 
     res.render("devices", {
+        page: { title: "Devices" },
         devices: allDevices,
         error
     })
@@ -49,6 +52,7 @@ router.get("/devices/:device", (req, res) => {
     }
 
     res.render("device", {
+        page: { title: device.name || device.id },
         device
     })
 })
@@ -58,6 +62,7 @@ router.get("/actions", (_, res) => {
     logger.debug("D> loading dashboard actions")
 
     res.render("actions", {
+        page: { title: "Actions" },
         actions: allActions
     })
 })
@@ -66,14 +71,18 @@ router.get("/actions", (_, res) => {
 router.get("/settings", (_, res) => {
     logger.debug("D> loading dashboard settings")
 
-    res.render("settings")
+    res.render("settings", {
+        page: { title: "Settings" },
+    })
 })
 
 // about route
 router.get("/about", (_, res) => {
     logger.debug("D> loading dashboard about")
 
-    res.render("about")
+    res.render("about", {
+        page: { title: "About" },
+    })
 })
 
 // export router
