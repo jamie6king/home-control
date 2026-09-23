@@ -12,6 +12,9 @@ const getEnv = (name: string, backup: string) => process.env[name]  || dotenv[na
 
 // set config
 const config: ApplicationConfig = {
+    "app": {
+        "version": "v0.0.0"
+    },
     "server": {
         "address": getEnv("HC_ADDRESS", "127.0.0.1"),
         "port": Number(getEnv("HC_PORT", "3000"))

@@ -15,6 +15,7 @@ global.actions = {}
 // setup app
 const ADDR = applicationConfig.server.address
 const PORT = applicationConfig.server.port
+const VERSION = applicationConfig.app.version
 
 // setup routes
 import rootRoute from "./routes/root"
@@ -29,5 +30,5 @@ app.use("/dashboard", dashboardRoute)
 
 // start app
 app.listen(PORT, ADDR, () => {
-    logger.info(`=> starting home control on ${ADDR}:${PORT.toString()}`)
+    logger.info(`=> starting home control ${VERSION} on ${ADDR}:${PORT.toString()}`)
 })

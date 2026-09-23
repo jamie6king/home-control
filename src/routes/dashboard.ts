@@ -6,6 +6,7 @@
 import { Router } from "express"
 import allDevices from "@lib:config/devices"
 import allActions from "@lib:config/actions"
+import applicationConfig from "@lib:config/application"
 import transformError from "@lib:ui/transformError"
 import logger from "@lib:logger"
 import type { ERROR as UI_ERROR } from "@lib:ui/error.types"
@@ -82,6 +83,7 @@ router.get("/about", (_, res) => {
 
     res.render("about", {
         page: { title: "About" },
+        version: applicationConfig.app.version
     })
 })
 

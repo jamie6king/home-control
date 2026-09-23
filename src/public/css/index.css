@@ -99,6 +99,10 @@ div#main {
         border-top-left-radius: 16px;
         background-color: var(--color-surface);
 
+        > p {
+            padding: 16px;
+        }
+
         &:has(div.banner) ul.device-list {
             padding-top: 0;
         }
