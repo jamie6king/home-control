@@ -5,10 +5,10 @@
 // imports
 import { vi, describe, beforeEach, it, expect } from "vitest"
 import validateActions from "./validate"
-import type ActionsConfig from "@lib:config/actions.types"
+import type ActionsConfig from "#lib:config/actions.types"
 
 // setup mocks
-vi.mock("@lib:config/devices", () => ({}))
+vi.mock("#lib:config/devices", () => ({}))
 
 // test function
 describe("actions validator", () => {

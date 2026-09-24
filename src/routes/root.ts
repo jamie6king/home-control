@@ -4,7 +4,7 @@
 
 // imports
 import { Router } from "express"
-import logger from "@lib:logger"
+import logger from "#lib:logger"
 
 // setup router
 const router = Router()

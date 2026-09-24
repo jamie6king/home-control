@@ -2,9 +2,9 @@
 // ~~~ validate actions
 //
 
-import type ActionsConfig from "@lib:config/actions.types"
-import { ACTION_DO_ACTION, ACTION_ON_ACTION } from "@lib:config/actions.types"
-import allDevices from "@lib:config/devices"
+import type ActionsConfig from "#lib:config/actions.types"
+import { ACTION_DO_ACTION, ACTION_ON_ACTION } from "#lib:config/actions.types"
+import allDevices from "#lib:config/devices"
 
 // validate actions
 export default function validateActions(actions: ActionsConfig): boolean {

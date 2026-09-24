@@ -162,3 +162,6 @@ jobs:
 
                   - name: Run type checking
                     run: npm run typecheck
+
+                  - name: Run import checking
+                    run: npm run importcheck

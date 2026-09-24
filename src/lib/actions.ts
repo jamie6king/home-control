@@ -3,14 +3,14 @@
 //
 
 // imports
-import setupListener from "@lib:mqtt/listener"
-import validateActions from "@lib:actions/validate"
-import runAction from "@lib:actions/run"
-import allActions from "@lib:config/actions"
-import type ActionsConfig from "@lib:config/actions.types"
-import allDevices from "@config:devices"
-import applicationConfig from "@config:application"
-import logger from "@lib:logger"
+import setupListener from "#lib:mqtt/listener"
+import validateActions from "#lib:actions/validate"
+import runAction from "#lib:actions/run"
+import allActions from "#lib:config/actions"
+import type ActionsConfig from "#lib:config/actions.types"
+import allDevices from "#config:devices"
+import applicationConfig from "#config:application"
+import logger from "#lib:logger"
 
 // setup mqtt
 const TOPIC = applicationConfig.mqtt.topic

@@ -4,12 +4,12 @@
 
 // imports
 import { Router } from "express"
-import allDevices from "@lib:config/devices"
-import allActions from "@lib:config/actions"
-import applicationConfig from "@lib:config/application"
-import transformError from "@lib:ui/transformError"
-import logger from "@lib:logger"
-import type { ERROR as UI_ERROR } from "@lib:ui/error.types"
+import allDevices from "#lib:config/devices"
+import allActions from "#lib:config/actions"
+import applicationConfig from "#lib:config/application"
+import transformError from "#lib:ui/transformError"
+import logger from "#lib:logger"
+import type { ERROR as UI_ERROR } from "#lib:ui/error.types"
 
 // setup router
 const router = Router()

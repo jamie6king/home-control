@@ -3,7 +3,7 @@
 //
 
 // imports
-import load from "@lib:dotenv"
+import load from "#lib:dotenv"
 import type ApplicationConfig from "./application.types"
 
 // load env variabes

@@ -3,10 +3,10 @@
 //
 
 // imports
-import sendMessage from "@lib:mqtt/message"
-import { ACTION_ON_ACTION, type ActionDoType, type ActionConfig } from "@lib:config/actions.types"
-import allDevices from "@lib:config/devices"
-import logger from "@lib:logger"
+import sendMessage from "#lib:mqtt/message"
+import { ACTION_ON_ACTION, type ActionDoType, type ActionConfig } from "#lib:config/actions.types"
+import allDevices from "#lib:config/devices"
+import logger from "#lib:logger"
 
 // TODO: make more dynamic
 // run single action

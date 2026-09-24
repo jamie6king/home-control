@@ -4,7 +4,7 @@
 
 // imports
 import mqtt, { type MqttClient } from "mqtt"
-import applicationConfig from "@config:application"
+import applicationConfig from "#config:application"
 
 // setup mqtt
 const ADDR = applicationConfig.mqtt.address

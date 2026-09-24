@@ -4,7 +4,7 @@
 
 // imports
 import { readFileSync } from "node:fs"
-import applicationConfig from "@config:application"
+import applicationConfig from "#config:application"
 import type DevicesConfig from "./devices.types"
 
 // load config

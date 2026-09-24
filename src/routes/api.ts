@@ -4,11 +4,11 @@
 
 // imports
 import { Router } from "express"
-import sendMessage from "@lib:mqtt/message"
-import allDevices from "@lib:config/devices"
-import { DEVICE_TYPE } from "@config:devices.types"
-import applicationConfig from "@config:application"
-import logger from "@lib:logger"
+import sendMessage from "#lib:mqtt/message"
+import allDevices from "#lib:config/devices"
+import { DEVICE_TYPE } from "#config:devices.types"
+import applicationConfig from "#config:application"
+import logger from "#lib:logger"
 
 // setup router
 const router = Router()

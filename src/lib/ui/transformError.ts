@@ -6,7 +6,7 @@
 
 // imports
 import { ERROR } from "./error.types"
-import logger from "@lib:logger"
+import logger from "#lib:logger"
 
 // transform
 export default function transformError(error: ERROR) {

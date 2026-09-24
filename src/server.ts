@@ -4,9 +4,9 @@
 
 // imports
 import app from "./app"
-import setupActions from "@lib:actions"
-import applicationConfig from "@config:application"
-import logger from "@lib:logger"
+import setupActions from "#lib:actions"
+import applicationConfig from "#config:application"
+import logger from "#lib:logger"
 
 // setup actions
 setupActions()

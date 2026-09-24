@@ -4,7 +4,7 @@
 
 // imports
 import { readFileSync } from "node:fs"
-import logger from "@lib:logger"
+import logger from "#lib:logger"
 
 // load env file
 export default function load(): { [env: string]: string} {
